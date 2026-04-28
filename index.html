@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <title>MealDesk – Essensplanung Pension</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================================
+       MealDesk – DESK Suite Design System
+       Inter / Sky Blue #0ea5e9 / dark + light
+       ============================================================ */
+
+    :root {
+      --bg: #ffffff;
+      --bg-elev: #f8fafc;
+      --bg-elev-2: #f1f5f9;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --accent: #0ea5e9;
+      --accent-hover: #0284c7;
+      --accent-soft: rgba(14, 165, 233, 0.1);
+      --accent-text: #ffffff;
+      --success: #10b981;
+      --success-soft: rgba(16, 185, 129, 0.1);
+      --error: #ef4444;
+      --error-soft: rgba(239, 68, 68, 0.1);
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.08);
+      --radius: 10px;
+      --radius-sm: 6px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0b1220;
+      --bg-elev: #111c2f;
+      --bg-elev-2: #1a2942;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border: #1e293b;
+      --border-strong: #334155;
+      --accent: #38bdf8;
+      --accent-hover: #7dd3fc;
+      --accent-soft: rgba(56, 189, 248, 0.15);
+      --accent-text: #0b1220;
+      --success: #34d399;
+      --success-soft: rgba(52, 211, 153, 0.15);
+      --error: #f87171;
+      --error-soft: rgba(248, 113, 113, 0.15);
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+      --shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    /* ===== Logo ===== */
+    .logo {
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      user-select: none;
+    }
+    .logo .logo-prefix { color: var(--text); }
+    .logo .logo-suffix { color: var(--accent); }
+
+    /* ===== Login Screen ===== */
+    .login-screen {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background: radial-gradient(ellipse at top, var(--accent-soft) 0%, transparent 60%), var(--bg);
+    }
+    .login-card {
+      width: 100%;
+      max-width: 380px;
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .login-card .logo { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .login-card .subtitle {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin: 0 0 1.5rem;
+    }
+    .login-card form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    /* ===== Inputs ===== */
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      font-family: inherit;
+      font-size: 1rem;
+      padding: 0.75rem 0.875rem;
+      background: var(--bg);
+      color: var(--text);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+    input::placeholder { color: var(--text-muted); }
+
+    label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 0.375rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* ===== Buttons ===== */
+    .primary-btn {
+      width: 100%;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.875rem 1rem;
+      background: var(--accent);
+      color: var(--accent-text);
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      min-height: 48px;
+      transition: background-color 0.15s ease, transform 0.05s ease;
+    }
+    .primary-btn:hover { background: var(--accent-hover); }
+    .primary-btn:active { transform: scale(0.99); }
+    .primary-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .ghost-btn {
+      font-family: inherit;
+      font-size: 0.875rem;
+      padding: 0.5rem 0.75rem;
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .ghost-btn:hover {
+      background: var(--bg-elev-2);
+      color: var(--text);
+      border-color: var(--border-strong);
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.15s ease;
+    }
+    .icon-btn:hover {
+      background: var(--bg-elev-2);
+      color: var(--text);
+      border-color: var(--border-strong);
+    }
+
+    .delete-btn {
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      transition: all 0.15s ease;
+    }
+    .delete-btn:hover {
+      background: var(--error-soft);
+      color: var(--error);
+      border-color: var(--error);
+    }
+
+    /* ===== App Layout ===== */
+    .app {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    @media (min-width: 640px) {
+      .app { padding: 1.5rem; }
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 0 1.25rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .header-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    /* ===== Sections ===== */
+    section {
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      box-shadow: var(--shadow-sm);
+    }
+    @media (min-width: 640px) {
+      section { padding: 1.5rem; }
+    }
+
+    section h2 {
+      margin: 0 0 0.25rem;
+      font-size: 1.125rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .hint {
+      margin: 0 0 1rem;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+    .section-header h2 { margin: 0; }
+
+    /* ===== Entry Form ===== */
+    .form-group { margin-bottom: 1rem; }
+
+    .name-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      margin-top: 0.5rem;
+      font-size: 0.8125rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .name-status[hidden] { display: none; }
+
+    .meals-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+      margin: 1rem 0 1.25rem;
+    }
+
+    .day-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .day-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .meal-toggles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+    .meal-toggles.single {
+      grid-template-columns: 1fr;
+    }
+
+    .meal-toggle {
+      font-family: inherit;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      padding: 0.75rem 0.875rem;
+      background: var(--bg);
+      color: var(--text);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      min-height: 48px;
+      transition: all 0.12s ease;
+      text-align: left;
+    }
+    .meal-toggle .meal-check {
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--border-strong);
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.12s ease;
+      color: transparent;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .meal-toggle:hover {
+      border-color: var(--accent);
+    }
+    .meal-toggle.active {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .meal-toggle.active .meal-check {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--accent-text);
+    }
+    [data-theme="dark"] .meal-toggle.active {
+      color: var(--accent-hover);
+    }
+
+    /* ===== Status / Toast ===== */
+    .status {
+      margin: 0.75rem 0 0;
+      min-height: 1.25rem;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+    .status.success { color: var(--success); font-weight: 500; }
+    .status.error { color: var(--error); font-weight: 500; }
+
+    .error-msg {
+      margin: 0;
+      min-height: 1.25rem;
+      font-size: 0.875rem;
+      color: var(--error);
+    }
+
+    /* ===== Overview Table ===== */
+    .table-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 0 -1.25rem;
+      padding: 0 1.25rem;
+    }
+    @media (min-width: 640px) {
+      .table-wrapper {
+        margin: 0 -1.5rem;
+        padding: 0 1.5rem;
+      }
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+      min-width: 480px;
+    }
+    th, td {
+      padding: 0.625rem 0.5rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      font-weight: 600;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    th:first-child, td:first-child {
+      text-align: left;
+      padding-left: 0.25rem;
+    }
+    th:last-child, td:last-child {
+      padding-right: 0.25rem;
+    }
+    .name-cell {
+      font-weight: 500;
+      color: var(--text);
+      max-width: 140px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .check-yes {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .check-no {
+      color: var(--border-strong);
+    }
+    tfoot th {
+      color: var(--text);
+      font-weight: 700;
+      font-size: 0.875rem;
+      letter-spacing: 0;
+      text-transform: none;
+      border-top: 2px solid var(--border-strong);
+      border-bottom: none;
+      padding-top: 0.75rem;
+    }
+
+    .empty-state {
+      padding: 1.5rem 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    /* ===== Footer note ===== */
+    .footer-note {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    /* ===== Loading overlay ===== */
+    .loading-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      transition: opacity 0.2s ease;
+    }
+    .loading-overlay[hidden] { display: none; }
+    .spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ===== Misc ===== */
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <!-- Loading overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Login Screen -->
+  <div class="login-screen" id="loginScreen" hidden>
+    <div class="login-card">
+      <div class="logo">
+        <span class="logo-prefix">Meal</span><span class="logo-suffix">Desk</span>
+      </div>
+      <p class="subtitle">Essensplanung Pension</p>
+      <form id="loginForm" autocomplete="off">
+        <input type="password" id="passwordInput" placeholder="Passwort" autocomplete="current-password" required />
+        <button type="submit" class="primary-btn">Einloggen</button>
+        <p class="error-msg" id="loginError" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- App -->
+  <div class="app" id="app" hidden>
+    <header>
+      <div class="logo">
+        <span class="logo-prefix">Meal</span><span class="logo-suffix">Desk</span>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="themeToggle" title="Theme wechseln" aria-label="Theme wechseln">🌙</button>
+        <button class="icon-btn" id="logoutBtn" title="Abmelden" aria-label="Abmelden">⏻</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Eigener Eintrag -->
+      <section>
+        <h2>Dein Eintrag</h2>
+        <p class="hint">Trag deinen Namen ein und wähle die Mahlzeiten, an denen du teilnimmst.</p>
+
+        <div class="form-group">
+          <label for="nameInput">Name</label>
+          <input type="text" id="nameInput" placeholder="Dein Name" autocomplete="name" />
+          <div class="name-status" id="nameStatus" hidden>
+            <span>↻</span> Bestehender Eintrag wird aktualisiert
+          </div>
+        </div>
+
+        <div class="meals-grid" id="mealsGrid"></div>
+
+        <button class="primary-btn" id="saveBtn">Speichern</button>
+        <p class="status" id="status" aria-live="polite"></p>
+      </section>
+
+      <!-- Übersicht -->
+      <section>
+        <div class="section-header">
+          <h2>Übersicht</h2>
+          <button class="ghost-btn" id="refreshBtn" title="Aktualisieren">↻ Aktualisieren</button>
+        </div>
+        <div class="table-wrapper">
+          <table id="overviewTable" hidden>
+            <thead>
+              <tr id="tableHeader"></tr>
+            </thead>
+            <tbody id="overviewBody"></tbody>
+            <tfoot>
+              <tr id="tableFooter"></tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="empty-state" id="emptyState">Noch keine Einträge vorhanden.</div>
+      </section>
+    </main>
+
+    <p class="footer-note">MealDesk · einmaliger Gebrauch</p>
+  </div>
+
+  <script>
+    /* ============================================================
+       KONFIGURATION – HIER DEINE WERTE EINTRAGEN
+       ============================================================
+       1. PASSWORD: Das Passwort, das alle Mitreisenden zum Einloggen brauchen.
+       2. BIN_ID: Deine jsonbin.io Bin ID (siehe README.md).
+       3. ACCESS_KEY: Dein jsonbin.io Access Key mit Read- und Update-Rechten.
+
+       HINWEIS ZUR SICHERHEIT:
+       Da diese Seite über GitHub Pages ausgeliefert wird, ist der Quellcode
+       öffentlich einsehbar. Passwort und Access Key sind also keine echten
+       Geheimnisse, sondern nur eine "weiche" Zugangsschranke. Für den
+       einmaligen Gebrauch im Freundeskreis ist das ausreichend.
+    ============================================================ */
+    const CONFIG = {
+      PASSWORD: 'Pledl',
+      BIN_ID: 'DEINE_BIN_ID_HIER',
+      ACCESS_KEY: 'DEIN_ACCESS_KEY_HIER'
+    };
+
+    /* ============================================================
+       Mahlzeiten-Definition
+    ============================================================ */
+    const DAYS = [
+      { key: 'mi', label: 'Mittwoch',   short: 'Mi', meals: ['a']      },
+      { key: 'do', label: 'Donnerstag', short: 'Do', meals: ['f', 'a'] },
+      { key: 'fr', label: 'Freitag',    short: 'Fr', meals: ['f', 'a'] },
+      { key: 'sa', label: 'Samstag',    short: 'Sa', meals: ['f', 'a'] },
+      { key: 'so', label: 'Sonntag',    short: 'So', meals: ['f']      }
+    ];
+    const MEAL_LABELS = { f: 'Frühstück', a: 'Abendessen' };
+    const MEAL_SHORT  = { f: 'F',         a: 'A' };
+
+    // Flat list: ['do_f', 'do_a', 'fr_f', ...]
+    const MEAL_IDS = DAYS.flatMap(d => d.meals.map(m => `${d.key}_${m}`));
+    const MEAL_HEADERS = DAYS.flatMap(d =>
+      d.meals.map(m => ({
+        id: `${d.key}_${m}`,
+        short: `${d.short} ${MEAL_SHORT[m]}`,
+        full: `${d.label} ${MEAL_LABELS[m]}`
+      }))
+    );
+
+    /* ============================================================
+       State
+    ============================================================ */
+    let entries = [];        // Array von { name, meals: { do_f: bool, ... } }
+    let selectedMeals = {};  // aktueller Form-Zustand
+    MEAL_IDS.forEach(id => selectedMeals[id] = false);
+
+    /* ============================================================
+       jsonbin.io API
+    ============================================================ */
+    const API_URL = `https://api.jsonbin.io/v3/b/${CONFIG.BIN_ID}`;
+    const API_HEADERS = {
+      'Content-Type': 'application/json',
+      'X-Access-Key': CONFIG.ACCESS_KEY
+    };
+
+    async function loadEntries() {
+      const res = await fetch(`${API_URL}/latest`, { headers: API_HEADERS });
+      if (!res.ok) {
+        const text = await res.text().catch(() => '');
+        throw new Error(`Laden fehlgeschlagen (${res.status}). ${text}`);
+      }
+      const data = await res.json();
+      const record = data.record || {};
+      return Array.isArray(record.entries) ? record.entries : [];
+    }
+
+    async function saveEntries(updatedEntries) {
+      const res = await fetch(API_URL, {
+        method: 'PUT',
+        headers: API_HEADERS,
+        body: JSON.stringify({ entries: updatedEntries })
+      });
+      if (!res.ok) {
+        const text = await res.text().catch(() => '');
+        throw new Error(`Speichern fehlgeschlagen (${res.status}). ${text}`);
+      }
+    }
+
+    /* ============================================================
+       Login / Logout
+    ============================================================ */
+    function isAuthenticated() {
+      return sessionStorage.getItem('mealdesk_auth') === 'ok';
+    }
+
+    function showLogin() {
+      document.getElementById('loginScreen').hidden = false;
+      document.getElementById('app').hidden = true;
+    }
+
+    function showApp() {
+      document.getElementById('loginScreen').hidden = true;
+      document.getElementById('app').hidden = false;
+      initApp();
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const input = document.getElementById('passwordInput');
+      const errorEl = document.getElementById('loginError');
+      if (input.value === CONFIG.PASSWORD) {
+        sessionStorage.setItem('mealdesk_auth', 'ok');
+        errorEl.textContent = '';
+        showApp();
+      } else {
+        errorEl.textContent = 'Falsches Passwort.';
+        input.value = '';
+        input.focus();
+      }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      sessionStorage.removeItem('mealdesk_auth');
+      location.reload();
+    });
+
+    /* ============================================================
+       Theme
+    ============================================================ */
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('mealdesk_theme', theme);
+      const btn = document.getElementById('themeToggle');
+      if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
+    (function initTheme() {
+      const saved = localStorage.getItem('mealdesk_theme');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(saved || (prefersDark ? 'dark' : 'light'));
+    })();
+    document.addEventListener('click', e => {
+      if (e.target && e.target.id === 'themeToggle') {
+        const cur = document.documentElement.getAttribute('data-theme');
+        applyTheme(cur === 'dark' ? 'light' : 'dark');
+      }
+    });
+
+    /* ============================================================
+       UI – Meals Grid
+    ============================================================ */
+    function renderMealsGrid() {
+      const grid = document.getElementById('mealsGrid');
+      grid.innerHTML = '';
+      DAYS.forEach(day => {
+        const group = document.createElement('div');
+        group.className = 'day-group';
+
+        const label = document.createElement('div');
+        label.className = 'day-label';
+        label.textContent = day.label;
+        group.appendChild(label);
+
+        const toggles = document.createElement('div');
+        toggles.className = 'meal-toggles' + (day.meals.length === 1 ? ' single' : '');
+
+        day.meals.forEach(m => {
+          const id = `${day.key}_${m}`;
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'meal-toggle';
+          btn.dataset.meal = id;
+          btn.innerHTML = `<span class="meal-check">✓</span><span>${MEAL_LABELS[m]}</span>`;
+          btn.addEventListener('click', () => toggleMeal(id));
+          toggles.appendChild(btn);
+        });
+
+        group.appendChild(toggles);
+        grid.appendChild(group);
+      });
+      updateMealToggles();
+    }
+
+    function toggleMeal(id) {
+      selectedMeals[id] = !selectedMeals[id];
+      updateMealToggles();
+    }
+
+    function updateMealToggles() {
+      document.querySelectorAll('.meal-toggle').forEach(btn => {
+        const id = btn.dataset.meal;
+        btn.classList.toggle('active', !!selectedMeals[id]);
+        btn.setAttribute('aria-pressed', !!selectedMeals[id]);
+      });
+    }
+
+    function clearForm() {
+      MEAL_IDS.forEach(id => selectedMeals[id] = false);
+      updateMealToggles();
+    }
+
+    /* ============================================================
+       UI – Übersicht
+    ============================================================ */
+    function renderOverview() {
+      const table = document.getElementById('overviewTable');
+      const empty = document.getElementById('emptyState');
+      const header = document.getElementById('tableHeader');
+      const body = document.getElementById('overviewBody');
+      const footer = document.getElementById('tableFooter');
+
+      if (!entries.length) {
+        table.hidden = true;
+        empty.hidden = false;
+        return;
+      }
+      table.hidden = false;
+      empty.hidden = true;
+
+      // Header
+      header.innerHTML = '<th>Name</th>'
+        + MEAL_HEADERS.map(h => `<th title="${h.full}">${h.short}</th>`).join('')
+        + '<th></th>';
+
+      // Body (sorted alphabetically)
+      const sorted = [...entries].sort((a, b) =>
+        a.name.localeCompare(b.name, 'de', { sensitivity: 'base' })
+      );
+      body.innerHTML = sorted.map((entry, i) => {
+        const cells = MEAL_HEADERS.map(h => {
+          const yes = !!(entry.meals && entry.meals[h.id]);
+          return yes
+            ? '<td><span class="check-yes">✓</span></td>'
+            : '<td><span class="check-no">·</span></td>';
+        }).join('');
+        const safeName = escapeHtml(entry.name);
+        return `<tr>
+          <td class="name-cell" title="${safeName}">${safeName}</td>
+          ${cells}
+          <td><button class="delete-btn" data-name="${safeName}" title="Eintrag löschen" aria-label="Eintrag löschen">×</button></td>
+        </tr>`;
+      }).join('');
+
+      // Footer (totals)
+      const totals = MEAL_HEADERS.map(h =>
+        entries.reduce((acc, e) => acc + ((e.meals && e.meals[h.id]) ? 1 : 0), 0)
+      );
+      footer.innerHTML = '<th>Σ Personen</th>'
+        + totals.map(n => `<th>${n}</th>`).join('')
+        + '<th></th>';
+
+      // Wire delete buttons
+      body.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', () => handleDelete(btn.dataset.name));
+      });
+    }
+
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    /* ============================================================
+       Name → bestehenden Eintrag erkennen
+    ============================================================ */
+    function findEntry(name) {
+      const norm = name.trim().toLowerCase();
+      if (!norm) return null;
+      return entries.find(e => e.name.trim().toLowerCase() === norm) || null;
+    }
+
+    function onNameInput() {
+      const name = document.getElementById('nameInput').value;
+      const existing = findEntry(name);
+      const status = document.getElementById('nameStatus');
+      if (existing) {
+        // Form mit bestehenden Werten füllen
+        MEAL_IDS.forEach(id => selectedMeals[id] = !!(existing.meals && existing.meals[id]));
+        updateMealToggles();
+        status.hidden = false;
+      } else {
+        status.hidden = true;
+      }
+    }
+
+    /* ============================================================
+       Speichern
+    ============================================================ */
+    function setStatus(msg, type) {
+      const el = document.getElementById('status');
+      el.textContent = msg || '';
+      el.className = 'status' + (type ? ' ' + type : '');
+    }
+
+    async function handleSave() {
+      const nameEl = document.getElementById('nameInput');
+      const name = nameEl.value.trim();
+      if (!name) {
+        setStatus('Bitte Namen eintragen.', 'error');
+        nameEl.focus();
+        return;
+      }
+
+      const saveBtn = document.getElementById('saveBtn');
+      saveBtn.disabled = true;
+      setStatus('Speichern …');
+
+      try {
+        // Konkurrenz-sicher: aktuellen Stand neu laden, dann mergen
+        const latest = await loadEntries();
+        const meals = {};
+        MEAL_IDS.forEach(id => meals[id] = !!selectedMeals[id]);
+        const myEntry = { name, meals, updated: new Date().toISOString() };
+
+        const idx = latest.findIndex(e =>
+          e.name.trim().toLowerCase() === name.toLowerCase()
+        );
+        if (idx >= 0) latest[idx] = myEntry;
+        else latest.push(myEntry);
+
+        await saveEntries(latest);
+        entries = latest;
+        renderOverview();
+
+        // Namen für nächsten Besuch merken
+        localStorage.setItem('mealdesk_name', name);
+
+        setStatus('Gespeichert ✓', 'success');
+        document.getElementById('nameStatus').hidden = false;
+        setTimeout(() => setStatus(''), 2500);
+      } catch (err) {
+        console.error(err);
+        setStatus(err.message || 'Speichern fehlgeschlagen.', 'error');
+      } finally {
+        saveBtn.disabled = false;
+      }
+    }
+
+    /* ============================================================
+       Löschen
+    ============================================================ */
+    async function handleDelete(name) {
+      if (!confirm(`Eintrag von "${name}" wirklich löschen?`)) return;
+      try {
+        const latest = await loadEntries();
+        const filtered = latest.filter(e =>
+          e.name.trim().toLowerCase() !== name.trim().toLowerCase()
+        );
+        await saveEntries(filtered);
+        entries = filtered;
+        renderOverview();
+        // Falls aktueller Form-Name übereinstimmt, leeren
+        const cur = document.getElementById('nameInput').value.trim().toLowerCase();
+        if (cur === name.trim().toLowerCase()) {
+          clearForm();
+          document.getElementById('nameStatus').hidden = true;
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Löschen fehlgeschlagen: ' + (err.message || 'Unbekannter Fehler'));
+      }
+    }
+
+    /* ============================================================
+       Refresh
+    ============================================================ */
+    async function handleRefresh() {
+      const btn = document.getElementById('refreshBtn');
+      btn.disabled = true;
+      btn.textContent = '↻ Lade …';
+      try {
+        entries = await loadEntries();
+        renderOverview();
+        // Falls Name eingetragen, ggf. Form aktualisieren
+        if (document.getElementById('nameInput').value.trim()) {
+          onNameInput();
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Aktualisieren fehlgeschlagen: ' + (err.message || 'Unbekannter Fehler'));
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '↻ Aktualisieren';
+      }
+    }
+
+    /* ============================================================
+       Init
+    ============================================================ */
+    async function initApp() {
+      // Theme-Button-Text mit aktuellem Theme synchronisieren
+      const curTheme = document.documentElement.getAttribute('data-theme') || 'light';
+      document.getElementById('themeToggle').textContent = curTheme === 'dark' ? '☀️' : '🌙';
+
+      renderMealsGrid();
+
+      // Event-Handler
+      document.getElementById('nameInput').addEventListener('input', onNameInput);
+      document.getElementById('saveBtn').addEventListener('click', handleSave);
+      document.getElementById('refreshBtn').addEventListener('click', handleRefresh);
+
+      // Bekannten Namen vorausfüllen
+      const savedName = localStorage.getItem('mealdesk_name');
+      if (savedName) {
+        document.getElementById('nameInput').value = savedName;
+      }
+
+      // Daten laden
+      try {
+        entries = await loadEntries();
+        renderOverview();
+        if (savedName) onNameInput();
+      } catch (err) {
+        console.error(err);
+        setStatus('Daten konnten nicht geladen werden. Konfiguration prüfen (BIN_ID / ACCESS_KEY).', 'error');
+      }
+    }
+
+    /* ============================================================
+       Start
+    ============================================================ */
+    window.addEventListener('DOMContentLoaded', () => {
+      // Loader weg
+      document.getElementById('loadingOverlay').hidden = true;
+
+      // Konfigurations-Check
+      if (CONFIG.BIN_ID === 'DEINE_BIN_ID_HIER' || CONFIG.ACCESS_KEY === 'DEIN_ACCESS_KEY_HIER') {
+        document.getElementById('loginScreen').hidden = true;
+        document.getElementById('app').hidden = true;
+        document.body.innerHTML = `
+          <div style="max-width: 520px; margin: 4rem auto; padding: 2rem; font-family: Inter, sans-serif; color: #0f172a;">
+            <h1 style="color: #0ea5e9;">MealDesk – Konfiguration fehlt</h1>
+            <p>Bitte trage in <code>index.html</code> deine Werte für <code>CONFIG.BIN_ID</code> und <code>CONFIG.ACCESS_KEY</code> ein. Details siehe README.md.</p>
+          </div>`;
+        return;
+      }
+
+      if (isAuthenticated()) {
+        showApp();
+      } else {
+        showLogin();
+        setTimeout(() => document.getElementById('passwordInput').focus(), 50);
+      }
+    });
+  </script>
+</body>
+</html>
